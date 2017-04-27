@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+
+        #accordion{
+            width: 600px;
+            margin:50px auto;
+        }
+        
+        button.accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+        }
+
+        button.accordion.active, button.accordion:hover {
+            background-color: #ddd;
+        }
+
+        
+        div.panel {
+            padding: 0 18px;
+            background-color: white;
+            display: none;
+        }
+        </style>
+    </head>
+    <body>
+
+        <div id="accordion">
+            <button class="accordion">Section 1</button>
+            <div class="panel">
+            <p>Lorem ipsum...</p>
+            </div>
+
+            <button class="accordion">Section 2</button>
+            <div class="panel">
+            <p>Lorem ipsum...</p>
+            </div>
+
+            <button class="accordion">Section 3</button>
+            <div class="panel">
+            <p>Lorem ipsum...</p>
+            </div>
+        </div>
+    
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+
+         
+
+        (function($){
+            $.fn.accordion = function(event){
+
+                var settings = $.extend({
+                    
+                }, event);
+ 
+                return this.each(function(){
+                    $(".accordion").click(function(){
+                    var index = $(".accordion").index(this);
+                    $(".panel").css({"display": "none"});
+                    $(".panel:eq("+index+")").toggle();
+                    });
+                });
+            }
+        }(jQuery));
+
+        $(document).ready(function(){
+            $(".accordion").accordion({
+
+            });
+        });
+    </script>
+</html>
